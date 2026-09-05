@@ -1,0 +1,70 @@
+{
+  "schema": "rd-lab.mission/v1",
+  "name": "owned-csv-importer",
+  "baseline": "baseline.py",
+  "candidates": [
+    {
+      "id": "false_success",
+      "program": "candidates/false_success.py"
+    },
+    {
+      "id": "repair",
+      "program": "candidates/repair.py"
+    }
+  ],
+  "cases": [
+    {
+      "id": "comma-delimited",
+      "input": {
+        "csv": "name,amount\nAlice,1.25\nBob,2.00\n"
+      },
+      "expected": [
+        {
+          "name": "Alice",
+          "amount": "1.25"
+        },
+        {
+          "name": "Bob",
+          "amount": "2.00"
+        }
+      ]
+    },
+    {
+      "id": "semicolon-decimal-comma",
+      "input": {
+        "csv": "name;amount\nCarla;1,25\nDiego;2,00\n"
+      },
+      "expected": [
+        {
+          "name": "Carla",
+          "amount": "1.25"
+        },
+        {
+          "name": "Diego",
+          "amount": "2.00"
+        }
+      ]
+    },
+    {
+      "id": "empty-input",
+      "input": {
+        "csv": ""
+      },
+      "expected": {
+        "error": "empty_csv",
+        "rows": []
+      }
+    },
+    {
+      "id": "malformed-row",
+      "input": {
+        "csv": "name,amount\nEve\n"
+      },
+      "expected": {
+        "error": "invalid_csv",
+        "rows": []
+      }
+    }
+  ],
+  "timeout_seconds": 1
+}
