@@ -1,6 +1,14 @@
 node_modules/
 package-lock.json
 .env
+.env.*
+!.env.example
+.envrc
+.envrc.local
+.superpowers/
+dist/
+CLAUDE.local.md
+examples/rd-lab/runs/
 __pycache__/
 *.pyc
 .venv/
