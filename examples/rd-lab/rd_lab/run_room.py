@@ -138,6 +138,25 @@ def _diff(chosen):
     return '<pre class="diff" aria-label="Selected repair source diff">' + "".join(lines) + '</pre>'
 
 
+def _investigation(inspection):
+    if not inspection:
+        return ""
+    definitions = "".join(
+        f'<li><code>{text(d["name"])}</code> at <code>{text(d["file"])}:{text(d["line"])}</code></li>'
+        for d in inspection.get("definitions", []))
+    references = "".join(
+        f'<li><code>{text(r["file"])}:{text(r["line"])}</code>: <code>{text(r["raw"])}</code></li>'
+        for r in inspection.get("references", {}).get("references", []))
+    limitations = "".join(f'<li>{text(item)}</li>' for item in inspection.get("limitations", []))
+    return (f'<section id="investigation"><h2>Source investigation</h2>'
+            f'<p>Looked up <code>{text(inspection["query"])}</code> with '
+            f'{text(inspection["tool"])} {text(inspection["distribution_version"])} '
+            f'in {len(inspection["source_files"])} selected source files.</p>'
+            f'<h3>Definitions</h3>{"<ul>" + definitions + "</ul>" if definitions else "<p>No definitions found.</p>"}'
+            f'<h3>Call sites</h3>{"<ul>" + references + "</ul>" if references else "<p>No resolved call sites found.</p>"}'
+            f'<ul class="muted">{limitations}</ul></section>')
+
+
 def render_report(report):
     """Render an existing report; never execute or fetch any report content."""
     if report.get("schema") != "rd-lab.run/v1":
@@ -163,6 +182,7 @@ def render_report(report):
 <a href="#change">Inspect the source change ↓</a></div>
 <section id="comparison" aria-labelledby="comparison-heading"><h2 id="comparison-heading">Which repair held up?</h2>
 {_comparison(report["experiments"], chosen)}</section>
+{_investigation(report.get("source_inspection"))}
 <section id="evidence" aria-labelledby="evidence-heading"><h2 id="evidence-heading">Inspect the evidence</h2>
 <p class="muted">Open a case to compare expected and observed output. A clean exit alone does not pass a case.</p>
 {_experiments(report["experiments"])}</section>

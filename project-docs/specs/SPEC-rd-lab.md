@@ -23,4 +23,6 @@ The first experiment repairs a synthetic CSV-to-JSON data importer. Its held-out
 No paid API calls without a budget. No secret values, private sessions, protected projects, customer data, CAPTCHA solving or external writes in experiments. Do not modify Canon, Flywheel, Forum, Index or Crucible repositories. Cloud previews contain synthetic data only. Do not claim novelty, exactly-once behavior, adoption or general autonomous repair from fixture results.
 
 ## Status
-Build authorized by the user; expanded R&D direction requested. Implementation in progress. Remote run and publication not performed.
+September 4, 2026: the user asked to preserve this prototype as a Flywheel project idea for native integration and licensing. Checkpoint the implemented components; do not publish the new lab code or present a finished challenge submission. License selection and native integration remain future decisions. Preserve upstream cookbook notices separately from original lab work. The private product concept is recorded in project-ideas/flywheel-rd-lab.md in the project-docs repository.
+
+The local engine and initial offline view exist; Index source inspection is connected. Remote execution, model-driven repair, full live UI and native integration are unfinished. No lab-code push or cloud run has occurred.

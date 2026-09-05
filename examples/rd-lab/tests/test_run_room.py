@@ -82,6 +82,20 @@ class RunRoomTests(unittest.TestCase):
         self.render(report)
         self.assertEqual(before, report)
 
+    def test_source_investigation_escapes_tool_supplied_symbols(self):
+        report = self.report()
+        report["source_inspection"] = {
+            "query": "<script>bad</script>", "tool": "index-graph",
+            "distribution_version": "2.9.0", "source_files": ["program.py"],
+            "definitions": [{"name": "<img>", "file": "program.py", "line": 2}],
+            "references": {"references": []},
+            "limitations": ["Static source navigation, not runtime behavior."]}
+        html = self.render(report)
+        self.assertIn("Source investigation", html)
+        self.assertIn("program.py:2", html)
+        self.assertIn("&lt;img&gt;", html)
+        self.assertNotIn("<script", html)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -34,4 +34,6 @@ After interface audit, connect supported public-safe Index/harness calls and ver
 Render the shared result contract as a responsive accessible experiment workspace, then add live progress and browser observations. Show source differences, actual experiment results, artifacts and uncertainty. Exercise a real owned browser service and lost-confirmation failure. Independent review and runtime checks precede publication.
 
 ## Progress
-Task 1 ready to implement. Tasks 2 and 3 retain the complete target and are pending verified adapter interfaces.
+Task 1 implemented in 71a8239 and under independent review. Initial offline run room and Index adapter passed scoped independent review. CLI/view integration and bounded adapter/recovery components are being checkpointed.
+
+September 4 user direction: preserve this as a Flywheel product idea for native integration and licensing. Stop expansion after the current component checkpoints. Do not push the original prototype, publish a challenge submission, or select a product license implicitly through the surrounding cookbook. Full Task 2/3 goals remain future work, not completed claims.
